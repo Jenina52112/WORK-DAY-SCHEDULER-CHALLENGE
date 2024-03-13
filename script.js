@@ -1,118 +1,149 @@
 dayjs.extend(window.dayjs_plugin_customParseFormat)
-
 var currentDay = document.querySelector("#currentDay");
-var spanEl = document.querySelectorAll("span");
-
 var divHour = document.querySelectorAll("[id = 'hour']");
-console.log(divHour.length)
+console.log(divHour)
+var hourContainer = document.querySelector(".container-fluid");
+var hourChildren  = hourContainer.children
+console.log(hourChildren.length)
 
-buttonEl  = document.querySelectorAll("[id = 'buttonEl']")
-console.log(buttonEl.length)
-
-textArea = document.querySelectorAll("[id = 'textArea']")
-console.log(textArea.length)
-// WHEN I open the planner
-// THEN the current day is displayed at the top of the calendar
+//This sets the date of the calendar
 var today = dayjs().format('dddd' + ', ' + 'MMMM D YYYY')
 currentDay.textContent = today
-var timeNow = dayjs().format('hA')
-console.log(timeNow)
 
-
-//spanEl.textContent = dayjs().format('9A')
-// initialTime = [dayjs().hour(0).format('hA'), dayjs().hour(10).format('hA'),dayjs().hour(11).format('hA'),dayjs().hour(12).format('hA'),dayjs().hour(13).format('hA'),
-// dayjs().hour(14).format('hA'),dayjs().hour(15).format('hA'),dayjs().hour(16).format('hA'),dayjs().hour(17).format('hA')]
-// console.log(initialTime)
-
-
-
-initialTime = [dayjs('9:00 AM','hA'),dayjs('10:00 AM', 'h:mm A'),dayjs('11:00 AM', 'h:mm A'),dayjs('12:00 PM', 'h:mm A'),dayjs('1:00 PM', 'h:mm A'),dayjs('2:00 PM', 'h:mm A'),
+initialTime = [dayjs('9:00 AM','h:mm A'),dayjs('10:00 AM', 'h:mm A'),dayjs('11:00 AM', 'h:mm A'),dayjs('12:00 PM', 'h:mm A'),dayjs('1:00 PM', 'h:mm A'),dayjs('2:00 PM', 'h:mm A'),
 dayjs('3:00 PM', 'h:mm A'),dayjs('4:00 PM', 'h:mm A'),dayjs('5:00 PM', 'h:mm A')]
-console.log(initialTime[0])
+var hourNow  = dayjs().format('hA')
 
-
-// for (var i = 0; i < initialTime.length; i++){
-//   spanEl[i].textContent = initialTime[i];
-  
-// }
-
-time3 = dayjs('11:00 PM', 'h:mm A')
-
+//This sets the colors for past, present and future hours
+function redgreenGray(){
 for (var i = 0; i < initialTime.length; i++){
+  var hourArray =  dayjs(initialTime[i]).format('hA')
+
 var time1 = dayjs()
 var time2 = initialTime[i]
-differ = time2.diff(time1, 'hour')
+var differ = time2.diff(time1, 'h')
 
-console.log(differ)
-
+if (hourNow === hourArray){
+  hourChildren[i].classList.add("present")
+}
 if (differ < 0){
-  divHour[i].classList.add("past")
+  hourChildren[i].classList.add("past")
 }
 if (differ > 0){
-  divHour[i].classList.add("future")
-}
-if (differ == 0){
-  divHour[i].classList.add("present")
+  hourChildren[i].classList.add("future")
 }
 
 }
-
-for (var i = 0; i < buttonEl.length; i++){
-  saveBtn1 = buttonEl[i]
-  
- 
-  
-} 
+}
+redgreenGray()
 
 
-  $("button").click(function(){
+//THIS IS FROM CORDOVA
+function saveEl(){
+  var value = $(this).siblings(".description").val()
+console.log(value)
+var hour = $(this).parent().attr("id")
+console.log(hour)
+localStorage.setItem(hour, value)
 
-    for (var i = 0; i < textArea.length; i++){
- 
-  
-      eventText = textArea[i].value
-     
-       
-     } 
+}
+$(".saveBtn").on("click", saveEl)
 
+// function hourUpdater() {
+//   // get current number of hours
+//   var currentHour = dayjs().hour();
 
-    console.log("button clicked")
-    localStorage.setItem('events', JSON.stringify(eventText))
-
-    // action goes here!!
-  });
-
- getLocal = JSON.parse(localStorage.getItem('eventText'));
-//const isBeforeDefault = currentDate.isBefore(targetDate);
- // Output: true
-//dayjs().isBefore(dayjs('2011-01-01'))
-
-// var spanElArray = document.querySelectorAll("[span]");
-// for (var i = 0; i < divHour.length; i++) {
-//   // Do something with each element (e.g., hide it)
-//   //divHour[i].classList.add("present")
- 
+//   // loop over time blocks
+//   $('.time-block').each(function () {
+//     var blockHour = parseInt($(this).attr('id').split('-')[1]);
+// console.log(blockHour)
+//     // check if we've moved past this time
+//     if (blockHour < currentHour) {
+//       $(this).addClass('past');
+//     } else if (blockHour === currentHour) {
+//       $(this).removeClass('past');
+//       $(this).addClass('present');
+//     } else {
+//       $(this).removeClass('past');
+//       $(this).removeClass('present');
+//       $(this).addClass('future');
+//     }
+//   });
 // }
-// for (var i = 0; i < timeText.length; i++) {
-//   // Do something with each element (e.g., hide it)
-//   //hourDiv[i].classList.add("present")
-//   hourText = timeText[i].textContent
-//   console.log(hourText)
-//   if (hourText > timeNow){
-//     divHour[i].classList.add("future")
+// hourUpdater();
+
+for(var i = 9; i < 18; i++){
+  $("#hour-"+i + " .description").val(localStorage.getItem("hour-" + i))
+}
+
+//THIS IS FROM CORDOVA
+
+
+
+
+// for(var i = 0; i<buttonEl.length;i++){
+  
+// buttonEl[i].addEventListener("click", function(event){
+//   event.preventDefault()
+  
+  
+//   userInput  = textArea.textContent
+
+//  localStorage.setItem('textarea', JSON.stringify(userInput))
+
+//  var userInput2 = JSON.parse(localStorage.getItem('textarea'))
+//  console.log(userInput2)
+// })
+// }
+
+
+
+// var buttonEl = $('.btn')
+// buttonEl.on('click', function(e){
+// var btnSaved = $(e.currentTarget)
+// var userText = btnSaved.prev()[0].value
+// console.log(userText)
+
+//   if(localStorage.setItem('text',userText ) == null){
+//   localStorage.getItem = ('text','[]')
 //   }
-//   if (hourText < timeNow){
-//     divHour[i].classList.add("past")
-//   } 
-//   if (hourText === timeNow){
-//     divHour[i].classList.add("present")
+//   localStorage.setItem('text', JSON.stringify(userInput))
+//   userInput.push(userText)
+
+//   var userInput = JSON.parse(localStorage.getItem('text'))
+
+// });
+// function saveText(){
+//   if(localStorage.getItem('text') != null){
+//       document.getElementsByClassName('description').innerHTML = JSON.parse(localStorage.getItem('text'))
 //   }
-//}
+// }
 
 
 
-
-
+  function getTextAreaInput() {
+    // Get the text area element
+    
+    
+    // Access the input from the text area
+     
+    // Do something with the text, for example, log it to the console
+    
+}
+//localStorage.setItem("scoreList", JSON.stringify(scoreList));
+/* <button onclick="getTextAreaInput()">Get Input</button>
+    
+    <script>
+        function getTextAreaInput() {
+            // Get the text area element
+            const textArea = document.getElementById('myTextArea');
+            
+            // Access the input from the text area
+            const text = textArea.value;
+            
+            // Do something with the text, for example, log it to the console
+            console.log('Text Area Input:', text);
+        } */
 
 
 // WHEN I scroll down

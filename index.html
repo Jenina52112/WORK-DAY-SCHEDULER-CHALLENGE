@@ -21,7 +21,7 @@
       rel="stylesheet"
     />
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.7/dayjs.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.7/plugin/customParseFormat.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.7/plugin/customParseFormat.min.js"></script>
     <link rel="stylesheet" href="style.css" />
     <title>Work Day Scheduler</title>
   </head>
@@ -44,7 +44,8 @@
         -->
 
       <!-- Example of a past time block. The "past" class adds a gray background color. -->
-      <div id="hour" class="row time-block">
+      
+      <div id="hour-9" class="row time-block">
         <div id = "timeText" class="col-2 col-md-1 hour text-center py-3"><span>9AM</span></div>
         <textarea id = "textArea" class="col-8 col-md-10 description" rows="3"> </textarea>
         <button class="btn saveBtn col-2 col-md-1" aria-label="save">
@@ -53,7 +54,7 @@
       </div>
 
       <!-- Example of a present time block. The "present" class adds a red background color. -->
-      <div id="hour" class="row time-block">
+      <div id="hour-10" class="row time-block">
         <div id = "timeText" class="col-2 col-md-1 hour text-center py-3"><span>10AM</span></div>
         <textarea id = "textArea" class="col-8 col-md-10 description" rows="3"> </textarea>
         <button class="btn saveBtn col-2 col-md-1" aria-label="save">
@@ -62,7 +63,7 @@
       </div>
 
       <!-- Example of a future time block. The "future" class adds a green background color. -->
-      <div id="hour" class="row time-block">
+      <div id="hour-11" class="row time-block">
         <div id = "timeText" class="col-2 col-md-1 hour text-center py-3"><span>11AM</span></div>
         <textarea id = "textArea" class="col-8 col-md-10 description" rows="3"> </textarea>
         <button class="btn saveBtn col-2 col-md-1" aria-label="save">
@@ -71,7 +72,7 @@
       </div>
     
 
-    <div id="hour" class="row time-block">
+    <div id="hour-12" class="row time-block">
       <div id = "timeText" class="col-2 col-md-1 hour text-center py-3"><span>12PM</span></div>
       <textarea id = "textArea" class="col-8 col-md-10 description" rows="3"> </textarea>
       <button class="btn saveBtn col-2 col-md-1" aria-label="save">
@@ -80,7 +81,7 @@
     </div>
   
 
-  <div id="hour" class="row time-block">
+  <div id="hour-13" class="row time-block">
     <div id = "timeText" class="col-2 col-md-1 hour text-center py-3"><span>1PM</span></div>
     <textarea id = "textArea" class="col-8 col-md-10 description" rows="3"> </textarea>
     <button class="btn saveBtn col-2 col-md-1" aria-label="save">
@@ -89,7 +90,7 @@
   </div>
 
 
-<div id="hour" class="row time-block">
+<div id="hour-14" class="row time-block">
   <div id = "timeText" class="col-2 col-md-1 hour text-center py-3"><span>2PM</span></div>
   <textarea id = "textArea" class="col-8 col-md-10 description" rows="3"> </textarea>
   <button class="btn saveBtn col-2 col-md-1" aria-label="save">
@@ -98,7 +99,7 @@
 </div>
 
 
-<div id="hour" class="row time-block">
+<div id="hour-15" class="row time-block">
   <div id = "timeText" class="col-2 col-md-1 hour text-center py-3"><span>3PM</span></div>
   <textarea id = "textArea" class="col-8 col-md-10 description" rows="3"> </textarea>
   <button class="btn saveBtn col-2 col-md-1" aria-label="save">
@@ -107,7 +108,7 @@
 </div>
 
 
-<div id="hour" class="row time-block">
+<div id="hour-16" class="row time-block">
   <div id = "timeText" class="col-2 col-md-1 hour text-center py-3"><span>4PM</span></div>
   <textarea id = "textArea" class="col-8 col-md-10 description" rows="3"> </textarea>
   <button class="btn saveBtn col-2 col-md-1" aria-label="save">
@@ -116,7 +117,7 @@
 </div>
 
 
-<div id="hour" class="row time-block">
+<div id="hour-17" class="row time-block">
   <div id = "timeText" class="col-2 col-md-1 hour text-center py-3"><span>5PM</span></div>
   <textarea id = "textArea" class="col-8 col-md-10 description" rows="3"> </textarea>
   <button class="btn saveBtn col-2 col-md-1" aria-label="save">
@@ -134,27 +135,3 @@
 </html>
 
 
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Time Difference</title>
-<script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.7/dayjs.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.7/plugin/customParseFormat.min.js"></script>
-</head>
-<body>
-    <div id="result"></div>
-
-<script>
-dayjs.extend(window.dayjs_plugin_customParseFormat);
-
-const fiveAM = dayjs('5:00 AM', 'h:mm A');
-const fivePM = dayjs('5:00 PM', 'h:mm A');
-
-const diffHours = fivePM.diff(fiveAM, 'hour');
-
-document.getElementById('result').innerText = 'Difference in hours: ' + diffHours;
-</script>
-</body>
-</html> -->
